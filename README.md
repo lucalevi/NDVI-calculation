@@ -54,6 +54,24 @@ For more information about Sentinel Hub and Copernicus, visit:
 - [Copernicus Programme](https://www.copernicus.eu/en)
 - [Copernicus Browser](https://browser.dataspace.copernicus.eu/?zoom=5&lat=50.16282&lng=20.78613&themeId=DEFAULT-THEME&visualizationUrl=https%3A%2F%2Fsh.dataspace.copernicus.eu%2Fogc%2Fwms%2Fa91f72b5-f393-4320-bc0f-990129bd9e63&datasetId=S2_L2A_CDAS&demSource3D="MAPZEN"&cloudCoverage=30&dateMode=SINGLE)
 
+## License
+This project is licensed under the MIT License. See the [LICENSE file](https://github.com/lucalevi/NDVI-calculation/blob/main/LICENSE) for details.
+
+## Original scripts
+The script in this repository has been re-elaborated based on two main files:
+- Authentication script: see the [Python Authentication](https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Overview/Authentication.html#python) of Sentinel Hub
+- Process API script: see the script using [NDVI data](https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Process/Examples/S3SLSTR.html#ndvi-image-and-value-multi-part-response-png-and-geotiff)
+
+The rest of the script is original.
+Warning: the programme has been submitted to models of artificial intelligence to better the overall performance and readibility of the script.
+
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Contact
+For any inquiries or issues, please contact iacolettig dot luca at gmail dot com, or submit an issue.
+
+
 
 
 
