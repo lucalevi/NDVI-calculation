@@ -39,7 +39,7 @@ cd ndvi-data-retrieval
 
 3. Run the script
    ```sh
-   python ndvi_retrieval.py
+   python ndvi_request_final.py
    ```
 
 ## Configuration
