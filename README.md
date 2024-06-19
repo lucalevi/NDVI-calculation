@@ -1,2 +1,4 @@
-# NDVI-calculation
-Sample code downloading a GeoTIF image from Sentinel Hub and calculates the average NDVI on a certain area, which is provided by a polygon 
+# NDVI Data Retrieval and Analysis
+[This Python script](https://github.com/lucalevi/NDVI-calculation/blob/main/ndvi_request_final.py)
+retrieves and analyzes Normalized Difference Vegetation Index (NDVI) data for a specified region using the Sentinel Hub API provided by Copernicus, the Earth observation program managed by the European Space Agency (ESA).
+
