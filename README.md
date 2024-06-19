@@ -28,5 +28,32 @@ To install the required packages, run:
 pip install oauthlib requests-oauthlib rasterio numpy
 ```
 
+## Usage
+1. Clone the repository
+```sh
+git clone https://github.com/yourusername/ndvi-data-retrieval.git
+cd ndvi-data-retrieval
+```
+
+2. Update the 'CLIENT_ID' and 'CLIENT_SECRET' in the script with your Sentinel Hub credentials. Look [here](https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Overview/Authentication.html) for a detailed guide on how to get your own credentials.
+
+3. Run the script
+   ```sh
+   python ndvi_retrieval.py
+   ```
+
+## Configuration
+Modify the evalscript and request_payload within the script to customize the data request (e.g., change the coordinates, time range, or data type).
+
+## Sentinel Hub API and Copernicus
+This script utilizes the Sentinel Hub API, a powerful interface provided by Copernicus, the European Space Agency's Earth observation program. Sentinel Hub enables easy and efficient access to satellite data for a variety of applications, including agriculture, forestry, and environmental monitoring.
+
+For more information about Sentinel Hub and Copernicus, visit:
+
+- [Sentinel Hub documentation](https://documentation.dataspace.copernicus.eu/APIs/SentinelHub.html)
+- [Copernicus Programme](https://www.copernicus.eu/en)
+- [Copernicus Browser](https://browser.dataspace.copernicus.eu/?zoom=5&lat=50.16282&lng=20.78613&themeId=DEFAULT-THEME&visualizationUrl=https%3A%2F%2Fsh.dataspace.copernicus.eu%2Fogc%2Fwms%2Fa91f72b5-f393-4320-bc0f-990129bd9e63&datasetId=S2_L2A_CDAS&demSource3D="MAPZEN"&cloudCoverage=30&dateMode=SINGLE)
+
+
 
 
