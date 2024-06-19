@@ -31,7 +31,7 @@ pip install oauthlib requests-oauthlib rasterio numpy
 ## Usage
 1. Clone the repository
 ```sh
-git clone https://github.com/yourusername/ndvi-data-retrieval.git
+git clone https://github.com/lucalevi/NDVI-calculation.git
 cd ndvi-data-retrieval
 ```
 
