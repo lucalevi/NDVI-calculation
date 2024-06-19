@@ -5,11 +5,11 @@ retrieves and analyzes Normalized Difference Vegetation Index (NDVI) data for a 
 ## Overview
 This script performs the following tasks:
 
-1. Authentication: Uses OAuth2 to authenticate with the Sentinel Hub API.
-2. Data Request: Sends a request to the Sentinel Hub API to retrieve NDVI data for a specified region and time range.
-3. Data Extraction: Downloads the data as a TAR file and extracts the contents.
-4. NDVI Calculation: Reads the extracted TIFF file and calculates the mean, minimum, and maximum NDVI values.
-5. JSON Export: Exports the NDVI statistics to a JSON file.
+1. **Authentication**: Uses OAuth2 to authenticate with the Sentinel Hub API.
+2. **Data Request**: Sends a request to the Sentinel Hub API to retrieve NDVI data for a specified region and time range.
+3. **Data Extraction**: Downloads the data as a TAR file and extracts the contents.
+4. **NDVI Calculation**: Reads the extracted TIFF file and calculates the mean, minimum, and maximum NDVI values.
+5. **JSON Export**: Exports the NDVI statistics to a JSON file.
 
 ## Requirements
 - Python 3.x
