@@ -42,14 +42,25 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Configuration
-CLIENT_ID = '<your_client_ID'
-CLIENT_SECRET = 'your_client_secret'
+CLIENT_ID = 'sh-4363f05e-8c9d-45d7-9b99-62a5cadfe8c7'
+CLIENT_SECRET = 'LXN1y7JsNBhCYyXltQZiJ6hYJGmVYDVR'
 TOKEN_URL = 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token'
 PROCESS_URL = 'https://sh.dataspace.copernicus.eu/api/v1/process'
 TAR_FILE = 'retrieved_files.tar'
 EXTRACT_PATH = 'retrieved_files'
 TIF_FILE = os.path.join(EXTRACT_PATH, 'default.tif')
 JSON_FILE = 'ndvi_statistics.json'
+POLYGON_COORDINATES =   [       # the coordinates of the retreived map
+                                [13.431473, 45.843278],
+                                [13.407070, 45.901024],
+                                [13.374575, 45.944087],
+                                [13.401089, 45.984709],
+                                [13.480989, 46.000895],
+                                [13.524993, 45.966807],
+                                [13.572922, 45.916585],
+                                [13.499877, 45.885294],
+                                [13.431473, 45.843278],
+                            ]
 
 # OAuth2 session
 def get_oauth_session(client_id: str, client_secret: str) -> None:
@@ -259,17 +270,7 @@ def main() -> None:
                     "geometry": {
                         "type": "Polygon",
                         "coordinates": [
-                            [
-                                [13.431473, 45.843278],
-                                [13.407070, 45.901024],
-                                [13.374575, 45.944087],
-                                [13.401089, 45.984709],
-                                [13.480989, 46.000895],
-                                [13.524993, 45.966807],
-                                [13.572922, 45.916585],
-                                [13.499877, 45.885294],
-                                [13.431473, 45.843278],
-                            ]
+                          POLYGON_COORDINATES
                         ],
                     },
                 },
