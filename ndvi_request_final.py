@@ -1,4 +1,6 @@
 """
+Sentinel Hub NDVI Data Retrieval and Analysis Script
+----------------------------------------------------
 This script interacts with the Sentinel Hub API to retrieve, process, 
 and analyze NDVI data.
 It performs the following steps:
@@ -42,25 +44,25 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Configuration
-CLIENT_ID = '<your_client_ID'
-CLIENT_SECRET = 'your_client_secret'
+CLIENT_ID = 'sh-4363f05e-8c9d-45d7-9b99-62a5cadfe8c7'
+CLIENT_SECRET = 'LXN1y7JsNBhCYyXltQZiJ6hYJGmVYDVR'
 TOKEN_URL = 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token'
 PROCESS_URL = 'https://sh.dataspace.copernicus.eu/api/v1/process'
 TAR_FILE = 'retrieved_files.tar'
 EXTRACT_PATH = 'retrieved_files'
 TIF_FILE = os.path.join(EXTRACT_PATH, 'default.tif')
 JSON_FILE = 'ndvi_statistics.json'
-POLYGON_COORDINATES =   [       # the coordinates of the retreived map
-                                [13.431473, 45.843278],
-                                [13.407070, 45.901024],
-                                [13.374575, 45.944087],
-                                [13.401089, 45.984709],
-                                [13.480989, 46.000895],
-                                [13.524993, 45.966807],
-                                [13.572922, 45.916585],
-                                [13.499877, 45.885294],
-                                [13.431473, 45.843278],
-                            ]
+POLYGON_COORDINATES = [
+    [13.431473, 45.843278],
+    [13.407070, 45.901024],
+    [13.374575, 45.944087],
+    [13.401089, 45.984709],
+    [13.480989, 46.000895],
+    [13.524993, 45.966807],
+    [13.572922, 45.916585],
+    [13.499877, 45.885294],
+    [13.431473, 45.843278],
+]
 
 # OAuth2 session
 def get_oauth_session(client_id: str, client_secret: str) -> None:
@@ -68,19 +70,19 @@ def get_oauth_session(client_id: str, client_secret: str) -> None:
     Create and return an OAuth2 session for accessing the Sentinel Hub API.
 
     Parameters:
-    client_id (str): The client ID for the OAuth2 application.
-    client_secret (str): The client secret for the OAuth2 application.
+        client_id (str): The client ID for the OAuth2 application.
+        client_secret (str): The client secret for the OAuth2 application.
 
     Returns:
-    None: If an error occurs during the OAuth2 session creation.
-    oauth (OAuth2Session): An authenticated OAuth2 session object for making API requests.
-    
+        None: If an error occurs during the OAuth2 session creation.
+        oauth (OAuth2Session): An authenticated OAuth2 session object for making API requests.
+        
     Raises:
-    Exception: If there is an error during the OAuth2 session creation or token fetching.
+        Exception: If there is an error during the OAuth2 session creation or token fetching.
 
     Note:
-    This function uses the requests_oauthlib library to create the OAuth2 session.
-    It logs any errors that occur during the session creation using the logging module.
+        This function uses the requests_oauthlib library to create the OAuth2 session.
+        It logs any errors that occur during the session creation using the logging module.
     """
     try:
         client = BackendApplicationClient(client_id=client_id)
@@ -98,19 +100,19 @@ def request_data(oauth, request_payload) -> bool:
     based on the provided request payload.
 
     Parameters:
-    oauth (OAuth2Session): An authenticated OAuth2 session object for making API requests.
-    request_payload (json): The request payload JSON containing the necessary parameters
-                             for data retrieval.
+        oauth (OAuth2Session): An authenticated OAuth2 session object for making API requests.
+        request_payload (json): The request payload JSON containing the necessary parameters
+                                for data retrieval.
 
     Returns:
-    bool: True if the data is successfully retrieved and saved to the TAR_FILE, False otherwise.
+        bool: True if the data is successfully retrieved and saved to the TAR_FILE, False otherwise.
 
     Raises:
-    Exception: If there is an error during the data request or writing the response content to the TAR_FILE.
+        Exception: If there is an error during the data request or writing the response content to the TAR_FILE.
 
     Note:
-    This function uses the requests_oauthlib library to make the POST request.
-    It logs any errors that occur during the data request using the logging module.
+        This function uses the requests_oauthlib library to make the POST request.
+        It logs any errors that occur during the data request using the logging module.
     """
     try:
         response = oauth.post(PROCESS_URL, json=request_payload, headers={"Accept": "application/tar"})
@@ -132,18 +134,18 @@ def extract_tar_file(tar_path : str, extract_to : str) -> None:
     Extracts the contents of a TAR file to a specified directory.
 
     Parameters:
-    tar_path (str): The path to the TAR file to be extracted.
-    extract_to (str): The directory where the contents of the TAR file will be extracted.
+        tar_path (str): The path to the TAR file to be extracted.
+        extract_to (str): The directory where the contents of the TAR file will be extracted.
 
     Returns:
-    None
+        None
 
     Raises:
-    Exception: If there is an error during the extraction process.
+        Exception: If there is an error during the extraction process.
 
     Note:
-    This function uses the tarfile module to open and extract the contents of the TAR file.
-    It logs any errors that occur during the extraction process using the logging module.
+        This function uses the tarfile module to open and extract the contents of the TAR file.
+        It logs any errors that occur during the extraction process using the logging module.
     """
     try:
         with tarfile.open(tar_path) as tar:
@@ -160,18 +162,18 @@ def calculate_ndvi_statistics(tif_file : str) -> dict:
     from a given GeoTIFF file.
 
     Parameters:
-    tif_file (str): The path to the GeoTIFF file containing the NDVI data.
+        tif_file (str): The path to the GeoTIFF file containing the NDVI data.
 
     Returns:
-    dict: A dictionary containing the mean, minimum, and maximum NDVI values.
+        dict: A dictionary containing the mean, minimum, and maximum NDVI values.
 
     Raises:
-    Exception: If there is an error reading the GeoTIFF file or calculating the NDVI statistics.
+        Exception: If there is an error reading the GeoTIFF file or calculating the NDVI statistics.
 
     Note:
-    This function assumes that the NDVI data is stored in the first band of the GeoTIFF file.
-    It divides the NDVI values by 10000 before calculating the statistics to get a proper NDVI value 
-    (having a maximum value of 1).
+        This function assumes that the NDVI data is stored in the first band of the GeoTIFF file.
+        It divides the NDVI values by 10000 before calculating the statistics to get a proper NDVI value 
+        (having a maximum value of 1).
     """
     try:
         with rasterio.open(tif_file) as src:
@@ -190,19 +192,19 @@ def save_to_json(data: dict, json_file: str) -> None:
     Save the provided data to a JSON file.
 
     Parameters:
-    data (dict): The data to be saved. It should be a dictionary.
-    json_file (str): The path to the JSON file where the data will be saved.
+        data (dict): The data to be saved. It should be a dictionary.
+        json_file (str): The path to the JSON file where the data will be saved.
 
     Returns:
-    None
+        None
 
     Raises:
-    Exception: If there is an error while opening or writing to the JSON file.
+        Exception: If there is an error while opening or writing to the JSON file.
 
     Note:
-    This function uses the json module to dump the data into a JSON file.
-    It logs an information message if the data is successfully saved to the JSON file.
-    If an error occurs during the process, it logs an error message and raises an exception.
+        This function uses the json module to dump the data into a JSON file.
+        It logs an information message if the data is successfully saved to the JSON file.
+        If an error occurs during the process, it logs an error message and raises an exception.
     """
     try:
         with open(json_file, 'w') as f:
@@ -221,10 +223,10 @@ def main() -> None:
     and saving the statistics to a JSON file.
 
     Returns:
-    None
+        None
 
     Raises:
-    Exception: If any error occurs during the process.
+        Exception: If any error occurs during the process.
     """
     try:
         oauth = get_oauth_session(CLIENT_ID, CLIENT_SECRET)
