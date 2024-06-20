@@ -43,7 +43,7 @@ cd ndvi-data-retrieval
    ```
 
 ## Configuration
-Modify the _evalscript_ and _request_payload_ within the script to customize the data request (e.g., change time range, or data type).
+Modify the _evalscript_ and _request_payload_ within the script to customize the data request (e.g. change time range, or data type).
 
 ## Sentinel Hub API and Copernicus
 This script utilizes the Sentinel Hub API, a powerful interface provided by Copernicus, the European Space Agency's Earth observation program. Sentinel Hub enables easy and efficient access to satellite data for a variety of applications, including agriculture, forestry, and environmental monitoring.
