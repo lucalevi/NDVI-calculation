@@ -44,8 +44,8 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Configuration
-CLIENT_ID = '<your_client_ID'
-CLIENT_SECRET = 'your_client_secret'
+CLIENT_ID = '<your_client_ID>'
+CLIENT_SECRET = '<your_client_secret>'
 TOKEN_URL = 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token'
 PROCESS_URL = 'https://sh.dataspace.copernicus.eu/api/v1/process'
 TAR_FILE = 'retrieved_files.tar'
